@@ -30,7 +30,17 @@ Some disadvantages of a thick client architecture:
 1. Slower initial load times
 2. Increased use of client-side resources
 
-Slower initial load times may be partially overcome or masked by loading a pre-rendered document prior to loading the application code. The increased use of client-side resources is inherent in the architecture, but in many cases represents a negligible impact on the user. It is necessary to reduce the application payload size, which contrasts to traditional web app architectures which employ 
+Slower initial load times may be partially overcome or masked by loading a pre-rendered document prior to loading the application code, and reducing the application payload size. Reducing the application payload often requires reducing the use of third-party libraries that carry unused functionality, instead opting for micro-libraries that perform one or very few functions. The increased use of client-side resources is inherent in the architecture, but in many cases represents a negligible impact on the user experience.
 
 Client Architecture
 ===================
+
+Ideally, the client-side application is delivered as a single file containing all necessary functionality. Third-party libraries and all application components should be included in this file as part of a build step. While a variety of features and libraries may be included, the following core components should be included in a complete framework:
+
+1. Client-side URL routing
+2. Asynchronous HTTP and/or websocket communication client
+3. Data indexing/storage
+4. Data-to-hypertext rendering (e.g. templating)
+5. Functional compartmentalization (controllers, modules, etc.)
+
+Many features that are often included in frameworks, such as DOM manipulation or a coherent model-view-controller system are not listed as core requirements. The architectural core is only concerned with maintaining application state, sending/receiving/storing data, rendering data as HTML, and providing a "sandbox" for application code. DOM manipulation as well as abstract model handling, etc. lie within the application code so are not considered "core" functionality.
